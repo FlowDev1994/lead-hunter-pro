@@ -24,12 +24,12 @@ class AppLeads(ctk.CTk):
         self.ultimo_arquivo = None
 
         # Configuração da Janela
-        self.title("Lead Hunter PRO - Powered by HubNeoSoma")
+        self.title("Leads HubNeoSoma")
         self.geometry("600x600") # Aumentei um pouco para caber o rodapé novo
         self.resizable(False, False)
 
         # Título Principal
-        self.label_titulo = ctk.CTkLabel(self, text="LEAD HUNTER PRO", font=("Roboto", 26, "bold"))
+        self.label_titulo = ctk.CTkLabel(self, text="HUBNEOSOMA LEADS", font=("Roboto", 26, "bold"))
         self.label_titulo.pack(pady=(20, 5))
         
         # Subtítulo (opcional)
