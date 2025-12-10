@@ -1,0 +1,38 @@
+name: Fabrica de Leads App
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Instalar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' 
+
+    - name: Instalar Dependencias
+      run: |
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Criar Executavel (Build)
+      run: |
+        # AQUI ESTA A MUDANCA: O nome do arquivo agora é app_leads.py
+        pyinstaller --noconsole --onefile --collect-all customtkinter --name "LeadHunter_HubNeoSoma" app_leads.py
+
+    - name: Upload do Arquivo Final
+      uses: actions/upload-artifact@v4
+      with:
+        name: LeadHunter-${{ matrix.os }}
+        path: dist/
